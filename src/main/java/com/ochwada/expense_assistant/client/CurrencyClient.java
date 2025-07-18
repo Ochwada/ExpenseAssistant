@@ -104,6 +104,8 @@ public class CurrencyClient {
 
     }
 
+
+
     // ==============================CurrencyData POJO =========================================
     @Data
     @AllArgsConstructor
