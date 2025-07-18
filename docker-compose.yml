@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  expense_assistant:
+    image: expense_assistant
+    container_name: expense_assistant_app
+    ports:
+      - "9090:9090"
+    env_file:
+      - .env
