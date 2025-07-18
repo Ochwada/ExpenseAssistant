@@ -60,7 +60,7 @@ public class WeatherClient {
     public WeatherData getWeatherForCity(String cityName) {
         // Construct the full URL with query parameters
         String url = String.format(
-                "%s?q=%s&appid=&%s&units=metic",
+                "%s?q=%s&appid=%s&units=metric",
                 apiUrl,
                 cityName,
                 apiKey
