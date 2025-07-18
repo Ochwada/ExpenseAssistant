@@ -99,37 +99,43 @@ The system will:
 ```
 ## Project Structure
 ```yaml
-├── ---------------------------------------------------------------------------------------------- 
-
+├── ----------------------------------------------------------------------------------------------
 expense_assistant/
-├── .env                       # Environment variables (e.g., DB credentials, API keys)
-├── .gitignore                 # Git ignore rules
-├── expense_assistant.iml  # IntelliJ project config
-├── mvnw / mvnw.cmd            # Maven Wrapper scripts
-├── pom.xml                    # Maven project configuration
+├── .dockerignore                 # Files/folders to exclude from Docker builds
+├── .env                          # Environment variables (API keys, DB URIs, etc.)
+├── .gitattributes                # Git configuration for line endings, diffs, etc.
+├── .gitignore                    # Specifies files/folders Git should ignore
+├── docker-compose.yml            # Defines multi-container Docker setup (MongoDB, app)
+├── mvnw / mvnw.cmd               # Maven Wrapper scripts for consistent builds
+├── pom.xml                       # Maven project config and dependency manager
+├── README.md                     # Project overview and instructions
 
 ├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── com.ochwada.expense_assistant/
-│   │   │       ├── controller/             # REST API controllers
-│   │   │       ├── model/                  # Domain models/entities
-│   │   │       │   ├── Appointment.java
-│   │   │       │   ├── Doctor.java
-│   │   │       │   ├── Gender.java
-│   │   │       │   ├── MedicalRecord.java
-│   │   │       │   ├── Patient.java
-│   │   │       │   └── Status.java
-│   │   │       ├── repository/             # Spring Data repositories
-│   │   │       ├── service/                # Business logic layer
+│   │   │       ├── client/                   # REST clients for external APIs
+│   │   │       │   ├── CurrencyClient.java
+│   │   │       │   └── WeatherClient.java
+│   │   │       ├── config/                   # Configuration classes (e.g., beans, API configs)
+│   │   │       ├── controller/               # REST API controllers
+│   │   │       ├── dto/                      # DTOs for request/response bodies
+│   │   │       │   └── ExpenseRequest.java
+│   │   │       ├── model/                    # MongoDB document models/entities
+│   │   │       │   └── Expense.java
+│   │   │       ├── repository/               # Spring Data MongoDB repositories
+│   │   │       ├── service/                  # Business logic and service layer
 │   │   │       └── ExpenseAssistantApplication.java  # Main Spring Boot application class
-│   │   └── resources/                      # Application resources (e.g., application.properties, static files)
-
+│   │
+│   │   └── resources/
+│   │       ├── application.properties        # Spring Boot config (env values, API keys)
+│   │       ├── static/                       # Static resources (if needed)
+│   │       └── templates/                    # Thymeleaf templates (if any)
 │
-│   ├── test/
-│   │   └── java/
-│   │       └── com.ochwada.expense_assistant/
-│   │           └── ExpenseAssistantApplicationTests.java  # Unit and integration tests
+│   └── test/
+│       └── java/
+│           └── com.ochwada.expense_assistant/
+│               └── ExpenseAssistantApplicationTests.java  # Unit/integration tests
 
 ├── ---------------------------------------------------------------------------------------------- 
 ```

@@ -78,7 +78,7 @@ public class WeatherClient {
 
             // Extracts the temperature value from the JSON tree.
             double temperature = root.path("main").path("temp").asDouble();
-            
+
             // Return all information wrapped in a WeatherData object
             return new WeatherData(description, temperature);
 
