@@ -1,9 +1,10 @@
 package com.ochwada.expense_assistant.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
+import lombok.*;
+import org.springframework.data.annotation.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * *******************************************************
@@ -14,12 +15,63 @@ import lombok.NoArgsConstructor;
  * Description: Represents an expense recorded by a user while traveling, each expense is stored in real-time.
  * Objective:
  * - Capture essential details of a financial transaction
- * - Automatically fetch and store data (weather and expenses)
+ * - Automatically fetch and store live weather and exchange rate data
+ * - Persist enriched expense records in MongoDB
  * *******************************************************
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "expenses")
 public class Expense {
+
+    /**
+     * Unique identifier for the expense record.
+     */
+    @Id
+    private String id;
+
+    /**
+     * Amount spent in the original (local) currency.
+     */
+    private double originalAmount;
+
+    /**
+     * The currency code (e.g., USD, EUR) in which the original amount was recorded.
+     */
+    private String originalCurrency;
+
+    /**
+     *  Converted amount in the user's base or home currency
+     */
+    private double convertedAmount;
+
+    /**
+     *  The target or home currency code for conversion - i.e. defaultTargetCurrency USD.
+     */
+    private  String homeCurrency;
+
+    /**
+     * City where the expense occurred.
+     */
+    private String city;
+
+    /**
+     * A short description or purpose of the expense (e.g., "Dinner", "Taxi").
+     */
+    private String description;
+
+    /**
+     * Current weather condition (e.g., "Cloudy", "Sunny") at the time of expense,
+     * fetched from the OpenWeather API.
+     */
+    private String weather;
+
+    /**
+     * Current temperature in degrees Celsius at the time of expense,
+     * fetched from the OpenWeather API.
+     */
+    private double temperature;
+
 }
