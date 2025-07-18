@@ -17,6 +17,26 @@ or remote worker, this application lets you:
 
 ## Tech Stack
 
+#### Required Spring Boot Dependencies
+To run this project, make sure the following dependencies are included in your `pom.xml`:
+
+- `spring-boot-starter-web `– For building RESTful APIs 
+- `spring-boot-starter-data-mongodb` – For MongoDB integration 
+- `spring-boot-starter-validation` – For validating request data 
+- `lombok – (Optional) `Reduces boilerplate code for models and DTOs
+
+#### Technologies Involved
+This application uses the following tools and technologies:
+
+- **Spring Boot + Maven** – Core backend framework and build tool 
+- **RestTemplate** – To fetch data from external APIs 
+- **MongoDB Atlas** – Cloud NoSQL database 
+- **Docker (multistage build)** – For containerizing the application 
+- **Docker Compose** – For managing environment variables and services
+
+
+<br>
+
 | Layer                | Technology                                                                                        |
 |----------------------|---------------------------------------------------------------------------------------------------|
 | **Backend**          | Java 17+, Spring Boot (Maven), Spring Web                                                         |
@@ -30,14 +50,14 @@ or remote worker, this application lets you:
 | **Orchestration**    | Docker Compose (env vars and deployment)                                                          |
 
 ## Features
-- Add an expense: amount, currency, city, description 
-- Fetch live exchange rate to convert into default/home currency 
-- Fetch current weather for the city at time of purchase 
-- Persist records in MongoDB Atlas 
-- List all expenses 
-- Search/filter expenses by city or date 
-- Delete any expense 
-- Fully containerized with Docker & Docker Compose 
+1. Add an expense: amount, currency, city, description 
+2. Fetch live exchange rate to convert into default/home currency 
+3. Fetch current weather for the city at time of purchase 
+4. Persist records in MongoDB Atlas 
+5. List all expenses 
+6. Search/filter expenses by city or date 
+7. Delete any expense 
+8. Fully containerized with Docker & Docker Compose 
 
 ## API Endpoints
 | Method   | Endpoint                    | Description             |
@@ -53,10 +73,10 @@ or remote worker, this application lets you:
 
 ```bash
 {
-  "amount": 150,
-  "currency": "EUR",
-  "city": "Barcelona",
-  "description": "Dinner with clients."
+  "amount": 150, # used amount
+  "currency": "EUR", # Source Currency - used amount
+  "city": "Barcelona", # Place the amount was used
+  "description": "Dinner with clients." # Description of what the amount was used for
 }
 ```
 The system will:
@@ -153,11 +173,11 @@ OPENWEATHER_API_URL=https://api.openweathermap.org/data/2.5/weather
 
 ---
 #  Possible Future Enhancements
-- Add frontend with React or Vue
-- Authentication with JWT
-- Export reports as PDF or Excel
-- Categorize expenses (food, transport, etc.)
-- Daily/Monthly summaries
+1. Add frontend with React or Vue 
+2. Authentication with JWT 
+3. Export reports as PDF or Excel 
+4. Categorize expenses (food, transport, etc.)
+5. Daily/Monthly summaries
 
 <br>
 <br>

@@ -35,27 +35,27 @@ public class Expense {
     /**
      * Amount spent in the original (local) currency.
      */
-    private double originalAmount;
+    private double originalAmount;// CurrencyClient
 
     /**
      * The currency code (e.g., USD, EUR) in which the original amount was recorded.
      */
-    private String originalCurrency;
+    private String originalCurrency; // CurrencyClient
 
     /**
      *  Converted amount in the user's base or home currency
      */
-    private double convertedAmount;
+    private double convertedAmount; // CurrencyClient
 
     /**
      *  The target or home currency code for conversion - i.e. defaultTargetCurrency USD.
      */
-    private  String homeCurrency;
+    private  String homeCurrency; // CurrencyClient
 
     /**
      * City where the expense occurred.
      */
-    private String city;
+    private String city; // WeatherClient
 
     /**
      * A short description or purpose of the expense (e.g., "Dinner", "Taxi").
@@ -66,12 +66,12 @@ public class Expense {
      * Current weather condition (e.g., "Cloudy", "Sunny") at the time of expense,
      * fetched from the OpenWeather API.
      */
-    private String weather;
+    private String weather; // WeatherClient
 
     /**
      * Current temperature in degrees Celsius at the time of expense,
      * fetched from the OpenWeather API.
      */
-    private double temperature;
+    private double temperature; // WeatherClient
 
 }
