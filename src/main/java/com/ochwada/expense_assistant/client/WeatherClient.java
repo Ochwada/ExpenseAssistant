@@ -1,6 +1,9 @@
 package com.ochwada.expense_assistant.client;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +57,34 @@ public class WeatherClient {
         this.mapper = new ObjectMapper();
     }
 
-    public WeatherData getWeatherForCity(String cityName){
+    public WeatherData getWeatherForCity(String cityName) {
+        // Construct the full URL with query parameters
+        String url = String.format(
+                "%s?q=%s&appid=&%s&units=metic",
+                apiUrl,
+                cityName,
+                apiKey
+        );
 
+        try {
+            // Send GET request to the open weather API
+            String response = template.getForObject(url, String.class);
+
+            // Parse the JSON response to extract weather data
+            JsonNode root = mapper.readTree(response);
+
+            //  Extracts the weather description from the JSON tree.
+            String description = root.path("weather").get(0).path("description").asText();
+
+            // Extracts the temperature value from the JSON tree.
+            double temperature = root.path("main").path("temp").asDouble();
+            
+            // Return all information wrapped in a WeatherData object
+            return new WeatherData(description, temperature);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch weather data: " + e.getMessage(), e);
+        }
     }
 
     // ======================WeatherData POJO =====================================
@@ -64,7 +93,7 @@ public class WeatherClient {
     @NoArgsConstructor
     public static class WeatherData {
         private String weather;
-        private String temperature;
+        private double temperature;
     }
 
 
