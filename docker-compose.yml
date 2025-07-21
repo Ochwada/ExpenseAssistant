@@ -8,3 +8,4 @@ services:
       - "9090:9090"
     env_file:
       - .env
+      - .env
